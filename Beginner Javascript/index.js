@@ -1,0 +1,1 @@
+const text = "Ready to get my hands dirty"
