@@ -27,12 +27,17 @@ button{
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition: all 0.5s;
+}
+
+.main-counter-limit{
+    background-color: rgb(119, 25, 128);
 }
 
 .heading{
     opacity: 0.6;
     text-transform: uppercase;
-    font-size: 30px;
+    font-size: 25px;
     font-weight: 700;
     margin-top: 30px;
     line-height: 10px;
@@ -100,6 +105,7 @@ button{
 .counter-button-increase{
     border-left: 1px solid violet;
 }
+
 
 .counter-icon-plus{
 
