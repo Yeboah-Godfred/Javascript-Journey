@@ -7,10 +7,13 @@ const facebookEl = document.querySelector(".stat-number-facebook");
 
 
 const textFunction = () => {
+    //setting the values
     const numberOfChars = textareaEl.value.length;
+    const numberOfWords = textareaEl.value.split(' ').length;
     const twitterCharsLeft = 280 -numberOfChars;
     const facebookCharsLeft = 2200 -numberOfChars;
 
+    //character validations
     if(twitterCharsLeft < 0){
         twitterEl.classList.add("stat-number-limit");
     }else{
@@ -23,10 +26,16 @@ const textFunction = () => {
         facebookEl.classList.remove("stat-number-limit");
     }
 
-
+    //assignment and display
     charactersEl.textContent = numberOfChars;
+    wordsEl.textContent = numberOfWords;
     twitterEl.textContent = twitterCharsLeft;
     facebookEl.textContent = facebookCharsLeft;
+
+    //setting number of words to zero
+    if(numberOfChars === 0){
+        wordsEl.textContent = 0;
+    }
 }
     
 
