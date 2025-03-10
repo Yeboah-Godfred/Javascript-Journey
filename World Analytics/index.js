@@ -7,6 +7,11 @@ const facebookEl = document.querySelector(".stat-number-facebook");
 
 
 const textFunction = () => {
+    //script tags validation
+    if(textareaEl.value.includes('<script>')){
+        alert("You cannot use that");
+        textareaEl.value = textareaEl.value.replace("<script>","");
+    }
     //setting the values
     const numberOfChars = textareaEl.value.length;
     const numberOfWords = textareaEl.value.split(' ').length;
