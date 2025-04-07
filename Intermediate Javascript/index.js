@@ -9,3 +9,4 @@ console.log(price);
 const ages = [12, 56, 39, 7, 22];
 
 ages.forEach(age => console.log(70-age + "years to death"));
+
