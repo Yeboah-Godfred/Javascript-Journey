@@ -1,6 +1,12 @@
+//GLOBAL SELECTORS
+
+const formEl = document.querySelector('.form');
+
 const textareaEl = document.querySelector('.form__textarea');
 
 const counterEl = document.querySelector('.counter');
+
+//COUNTER COMPONENT
 
 const inputHandler = () => {
    //max characters
@@ -18,3 +24,17 @@ const inputHandler = () => {
 };
 
 textareaEl.addEventListener('input', inputHandler);
+
+
+//FORM COMPONENT
+
+const submitHandler = (e) => {
+
+    e.preventDefault();
+
+    const text = textareaEl.value;
+    
+    console.log(text)
+}
+
+formEl.addEventListener('submit', submitHandler);
