@@ -29,12 +29,25 @@ textareaEl.addEventListener('input', inputHandler);
 //FORM COMPONENT
 
 const submitHandler = (e) => {
-
+    //preventing default browser action
     e.preventDefault();
 
+    //getting input data 
     const text = textareaEl.value;
     
-    console.log(text)
+    //text validation
+    if(text.includes('#') && text.length > 4){
+        formEl.classList.add('form--valid');
+
+        setTimeout(()=>{
+            formEl.classList.remove('form--valid');
+        },2000);
+    }else{
+        formEl.classList.add('form--invalid');
+        setTimeout(()=>{
+            formEl.classList.remove('form--invalid');
+        },2000);
+    }
 }
 
 formEl.addEventListener('submit', submitHandler);
