@@ -52,10 +52,31 @@ const submitHandler = (e) => {
         setTimeout(() => {
             formEl.classList.remove('form--invalid');
         }, 2000);
+
+        return 1;
     }
 
     //focus textarea
     textareaEl.focus();
+
+    //extract hashtag from text
+    const hashtag = text.split(' ').find(word => word.includes('#'));
+
+    //company name
+    const company = hashtag.substring(1);
+
+    //company badge letter
+    const badgeLetter = company.substring(0, 1);
+
+    //vote count
+    const upvoteCount = 0;
+
+    //days ago the text was sent
+    const daysAgo = 0;
+
+
+
+
 }
 
 formEl.addEventListener('submit', submitHandler);
