@@ -6,6 +6,8 @@ const textareaEl = document.querySelector('.form__textarea');
 
 const counterEl = document.querySelector('.counter');
 
+const feedbackListEl = document.querySelector('.feedbacks')
+
 //COUNTER COMPONENT
 
 const inputHandler = () => {
@@ -52,12 +54,13 @@ const submitHandler = (e) => {
         setTimeout(() => {
             formEl.classList.remove('form--invalid');
         }, 2000);
+        
+        textareaEl.focus();
 
         return 1;
     }
 
     //focus textarea
-    textareaEl.focus();
 
     //extract hashtag from text
     const hashtag = text.split(' ').find(word => word.includes('#'));
@@ -66,7 +69,7 @@ const submitHandler = (e) => {
     const company = hashtag.substring(1);
 
     //company badge letter
-    const badgeLetter = company.substring(0, 1);
+    const badgeLetter = company.substring(0, 1).toUpperCase();
 
     //vote count
     const upvoteCount = 0;
@@ -74,8 +77,24 @@ const submitHandler = (e) => {
     //days ago the text was sent
     const daysAgo = 0;
 
+    const feedbackItemHtml = `
+        <li class="feedback">
+            <button class="upvote">
+                <i class="fa-solid fa-caret-up upvote__icon"></i>
+                <span class="upvote__count">${upvoteCount}</span>
+            </button>
+            <section class="feedback__badge">
+                <p class="feedback__letter">${badgeLetter}</p>
+            </section>
+            <div class="feedback__content">
+                <p class="feedback__company">${company}</p>
+                <p class="feedback__text">${text}</p>
+            </div>
+            <p class="feedback__date">${daysAgo === 0 ? 'NEW' : `${daysAgo}d`}</p>
+        </li>
+    `;
 
-
+    feedbackListEl.insertAdjacentHTML('beforeend', feedbackItemHtml)
 
 }
 
