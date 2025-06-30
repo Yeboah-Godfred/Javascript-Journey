@@ -1,79 +1,72 @@
 //GLOBAL SELECTORS
+const MAX_CHARS = 150;
 
 const formEl = document.querySelector('.form');
-
 const textareaEl = document.querySelector('.form__textarea');
-
 const counterEl = document.querySelector('.counter');
-
 const feedbackListEl = document.querySelector('.feedbacks')
+const submitButtonEl = document.querySelector('.submit-btn');
 
 //COUNTER COMPONENT
 
 const inputHandler = () => {
     //max characters
-    const maxChars = 150;
-
+    const maxChars = MAX_CHARS;
     //characters entered
     const charsEntered = textareaEl.value.length;
-
     //characters left
     const charsLeft = maxChars - charsEntered;
-
     //output results
-
     counterEl.textContent = charsLeft;
 };
 
 textareaEl.addEventListener('input', inputHandler);
 
-
+const showVisualIndicator = (textCheck) => {
+    if (textCheck == 'valid'){
+        formEl.classList.add('form--valid');
+        //remove visual indicator
+        setTimeout(() => {
+            formEl.classList.remove('form--valid');
+        }, 2000);
+    }else{
+        formEl.classList.add('form--invalid');
+        //remove visual indicator
+        setTimeout(() => {
+            formEl.classList.remove('form--invalid');
+        }, 2000);
+    }
+}
 //FORM COMPONENT
 
 const submitHandler = (e) => {
     //preventing default browser action
     e.preventDefault();
-
     //getting input data 
     const text = textareaEl.value;
-
     //text validation
     if (text.includes('#') && text.length > 4) {
         //show valid indicator
-        formEl.classList.add('form--valid');
-
-        //remove visual indicator
-        setTimeout(() => {
-            formEl.classList.remove('form--valid');
-        }, 2000);
+        showVisualIndicator('valid');
     } else {
         //show invalid indicator
-        formEl.classList.add('form--invalid');
+        showVisualIndicator();
 
-        //remove visual indicator
-        setTimeout(() => {
-            formEl.classList.remove('form--invalid');
-        }, 2000);
-        
+        //focus textarea
         textareaEl.focus();
 
         return 1;
     }
-
-    //focus textarea
 
     //extract hashtag from text
     const hashtag = text.split(' ').find(word => word.includes('#'));
 
     //company name
     const company = hashtag.substring(1);
-
     //company badge letter
     const badgeLetter = company.substring(0, 1).toUpperCase();
-
     //vote count
     const upvoteCount = 0;
-
     //days ago the text was sent
     const daysAgo = 0;
 
@@ -96,6 +89,12 @@ const submitHandler = (e) => {
 
     feedbackListEl.insertAdjacentHTML('beforeend', feedbackItemHtml)
 
+    //clear textarea
+    textareaEl.value = '';
+    //blur submit button
+    submitButtonEl.blur();
+    //set counter to zero
+    counterEl.textContent = MAX_CHARS;
 }
 
 formEl.addEventListener('submit', submitHandler);
