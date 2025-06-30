@@ -98,3 +98,7 @@ const submitHandler = (e) => {
 }
 
 formEl.addEventListener('submit', submitHandler);
+
+// FEEDBACK LIST COMPONENT
+
+fetch('https://bytegrad.com/course-assets/js/1/api/feedbacks')
