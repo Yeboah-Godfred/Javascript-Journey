@@ -6,6 +6,7 @@ const textareaEl = document.querySelector('.form__textarea');
 const counterEl = document.querySelector('.counter');
 const feedbackListEl = document.querySelector('.feedbacks')
 const submitButtonEl = document.querySelector('.submit-btn');
+const spinnerEl = document.querySelector('.spinner');
 
 //COUNTER COMPONENT
 
@@ -106,8 +107,10 @@ fetch('https://bytegrad.com/course-assets/js/1/api/feedbacks').then(response => 
     return response.json()
 }).then(
     data => {
-        //iterate over each feedback item in array and render in a list
+        //remove spinner
+        spinnerEl.remove()
 
+        //iterate over each feedback item in array and render in a list
         data.feedbacks.forEach(feedbackItem => {
 
             //New feedback item
@@ -132,4 +135,6 @@ fetch('https://bytegrad.com/course-assets/js/1/api/feedbacks').then(response => 
         })
 
     }
-);
+).catch(error =>{
+    feedbackListEl.textContent = `Failed to load feedbacks, Error Message: ${error.message}`
+});
