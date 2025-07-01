@@ -70,6 +70,7 @@ const submitHandler = (e) => {
     //days ago the text was sent
     const daysAgo = 0;
 
+    //New feedback item
     const feedbackItemHtml = `
         <li class="feedback">
             <button class="upvote">
@@ -101,4 +102,12 @@ formEl.addEventListener('submit', submitHandler);
 
 // FEEDBACK LIST COMPONENT
 
-fetch('https://bytegrad.com/course-assets/js/1/api/feedbacks')
+fetch('https://bytegrad.com/course-assets/js/1/api/feedbacks').then(response => {
+    return response.json()
+}).then(
+    data => {
+        console.log(data.feedbacks);
+
+        
+    }
+);
