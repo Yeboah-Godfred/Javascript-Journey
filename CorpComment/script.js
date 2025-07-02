@@ -105,6 +105,22 @@ const submitHandler = (e) => {
     //render feedback item
     renderFeedbackItem(feedbackItem);
 
+    //Add feedbackItem to server
+    fetch('https://bytegrad.com/course-assets/js/1/api/feedbacks', {
+        method: 'POST',
+        body: JSON.stringify(feedbackItem),
+        headers: {
+            Accept: 'application/json',
+            'content-Type': 'application/json'
+        }
+    }).then(response => {
+        if (!response.ok){
+            return console.log("Something went wrong")
+        }
+
+        console.log("Submitted successfully")
+    }).catch(error => console.log(`Error message: ${error.message}`))
+
     //clear textarea
     textareaEl.value = '';
     //blur submit button
@@ -129,9 +145,8 @@ fetch('https://bytegrad.com/course-assets/js/1/api/feedbacks').then(response => 
 
             //New feedback item
          renderFeedbackItem(feedbackItem);
-         
-        })
 
+        })
     }
 ).catch(error =>{
     feedbackListEl.textContent = `Failed to load feedbacks, Error Message: ${error.message}`
