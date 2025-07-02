@@ -1,5 +1,6 @@
 //GLOBAL SELECTORS
 const MAX_CHARS = 150;
+const BASE_API_URL = 'https://bytegrad.com/course-assets/js/1/api';
 
 const formEl = document.querySelector('.form');
 const textareaEl = document.querySelector('.form__textarea');
@@ -106,7 +107,7 @@ const submitHandler = (e) => {
     renderFeedbackItem(feedbackItem);
 
     //Add feedbackItem to server
-    fetch('https://bytegrad.com/course-assets/js/1/api/feedbacks', {
+    fetch(`${BASE_API_URL}/feedbacks`, {
         method: 'POST',
         body: JSON.stringify(feedbackItem),
         headers: {
@@ -133,7 +134,7 @@ formEl.addEventListener('submit', submitHandler);
 
 // FEEDBACK LIST COMPONENT
 
-fetch('https://bytegrad.com/course-assets/js/1/api/feedbacks').then(response => {
+fetch(`${BASE_API_URL}/feedbacks`).then(response => {
     return response.json()
 }).then(
     data => {
