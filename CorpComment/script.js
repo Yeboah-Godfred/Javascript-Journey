@@ -141,7 +141,17 @@ const clickHandler = (event) => {
     const upvoteIntention = clickedEl.className.includes('upvote');
 
     if (upvoteIntention){
+        const upvoteButtonEl = clickedEl.closest('.upvote');
 
+        //disable upvote element
+        upvoteButtonEl.disabled = true;
+
+        //select upvoteCount element
+        const upvoteCountEl = upvoteButtonEl.querySelector('.upvote__count');
+
+        //get current value of upvote Count element
+        const upvoteCount = +upvoteCountEl.textContent;
+        upvoteCountEl.textContent = upvoteCount + 1;
     }else{
         clickedEl.closest('.feedback').classList.toggle('feedback--expand');
     }
