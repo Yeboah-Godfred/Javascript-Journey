@@ -132,7 +132,23 @@ const submitHandler = (e) => {
 
 formEl.addEventListener('submit', submitHandler);
 
+
 // FEEDBACK LIST COMPONENT
+const clickHandler = (event) => {
+    //get clicked html element
+    const clickedEl = event.target;
+
+    const upvoteIntention = clickedEl.className.includes('upvote');
+
+    if (upvoteIntention){
+
+    }else{
+        clickedEl.closest('.feedback').classList.toggle('feedback--expand');
+    }
+}
+
+feedbackListEl.addEventListener('click', clickHandler);
+
 
 fetch(`${BASE_API_URL}/feedbacks`).then(response => {
     return response.json()
